@@ -161,6 +161,15 @@ local ToggleRebirth = MainTab:CreateToggle({
     end
 })
 
+local ToggleRebirth = MainTab:CreateToggle({
+    Name = "Corridas Automáticas",
+    CurrentValue = false,
+    Flag = "races1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+    Callback = function(Value)
+        ToggleAutoRaces(Value)
+    end  
+})
+
  local Slider = MainTab:CreateSlider({
 	Name = "WalkSpeed",
 	Range = {16, 10000},
