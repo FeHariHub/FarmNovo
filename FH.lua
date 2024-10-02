@@ -46,7 +46,7 @@ Rayfield:Notify({
 
 -- Auto Steps Toggle
 local ToggleSteps = MainTab:CreateToggle({
-    Name = "Farmar Automático",
+    Name = "Farmar Automático Orange City",
     CurrentValue = false,
     Flag = "steps1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
     Callback = function(Value)
@@ -65,7 +65,7 @@ local ToggleSteps = MainTab:CreateToggle({
 
 -- Auto Steps Toggle
 local ToggleSteps = MainTab:CreateToggle({
-    Name = "Farmar Automático 2",
+    Name = "Farmar Automático Red Magma",
     CurrentValue = false,
     Flag = "steps1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
     Callback = function(Value)
@@ -74,6 +74,25 @@ local ToggleSteps = MainTab:CreateToggle({
             local args = {
                 [1] = "collectOrb",
                 [2] = "Red Orb",
+                [3] = "Magma City"
+            }
+            game:GetService("ReplicatedStorage").rEvents.orbEvent:FireServer(unpack(args))
+            wait() -- You might want to adjust the wait time to control the frequency
+        end
+    end
+})
+
+-- Auto Steps Toggle
+local ToggleSteps = MainTab:CreateToggle({
+    Name = "Farmar Automático Yellow Magma",
+    CurrentValue = false,
+    Flag = "steps1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+    Callback = function(Value)
+        getgenv().AutoSteps = Value -- Set AutoSteps to the current toggle value
+        while getgenv().AutoSteps do
+            local args = {
+                [1] = "collectOrb",
+                [2] = "Yellow",
                 [3] = "Magma City"
             }
             game:GetService("ReplicatedStorage").rEvents.orbEvent:FireServer(unpack(args))
