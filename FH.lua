@@ -84,7 +84,7 @@ local ToggleSteps = MainTab:CreateToggle({
 
 -- Auto Steps Toggle
 local ToggleSteps = MainTab:CreateToggle({
-    Name = "Farmar Automático Yellow Magma",
+    Name = "Farmar Automático Yellow Magmaa",
     CurrentValue = false,
     Flag = "steps1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
     Callback = function(Value)
@@ -92,7 +92,7 @@ local ToggleSteps = MainTab:CreateToggle({
         while getgenv().AutoSteps do
             local args = {
                 [1] = "collectOrb",
-                [2] = "Yellow",
+                [2] = "Yellow Orb",
                 [3] = "Magma City"
             }
             game:GetService("ReplicatedStorage").rEvents.orbEvent:FireServer(unpack(args))
