@@ -84,7 +84,7 @@ local ToggleSteps = MainTab:CreateToggle({
 
 -- Auto Steps Toggle
 local ToggleSteps = MainTab:CreateToggle({
-    Name = "Farmar Automático Yellow Magmaa",
+    Name = "Farmar Automático Yellow Magma",
     CurrentValue = false,
     Flag = "steps1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
     Callback = function(Value)
@@ -136,3 +136,27 @@ local ToggleRebirth = MainTab:CreateToggle({
         end
     end
 })
+
+ local Slider = MainTab:CreateSlider({
+	Name = "WalkSpeed",
+	Range = {16, 10000},
+	Increment = 10,
+	Suffix = "WalkSpeed",
+	CurrentValue = 16,
+	Flag = "Slider1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+	Callback = function(s)
+		game.Players.LocalPlayer.character.Humanoid.WalkSpeed = s
+	end,
+})
+
+local Slider = MainTab:CreateSlider({
+    Name = "JumpPower",
+    Range = {0, 5000},
+    Increment = 10,
+    Suffix = "JumpPower",
+    CurrentValue = 10,
+    Flag = "Slider2", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+    Callback = function(a)
+        game.Players.LocalPlayer.Character.Humanoid.JumpPower = Value
+    end,
+ })
