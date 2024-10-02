@@ -46,22 +46,22 @@ Rayfield:Notify({
 
 -- Auto Steps Toggle
 local ToggleSteps = MainTab:CreateToggle({
-    Name = "Auto Steps",
+    Name = "Toggle AutoSpeed/XP",
     CurrentValue = false,
-    Flag = "steps1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+    Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
     Callback = function(Value)
-        getgenv().AutoSteps = Value -- Set AutoSteps to the current toggle value
-        while getgenv().AutoSteps do
+        while wait() do
             local args = {
                 [1] = "collectOrb",
-                [2] = "Orange Orb",
-                [3] = "City"
+                [2] = "Red Orb",
+                [3] = "Magma City"
             }
+            
             game:GetService("ReplicatedStorage").rEvents.orbEvent:FireServer(unpack(args))
-            wait() -- You might want to adjust the wait time to control the frequency
-        end
-    end
-})
+            
+            
+    end,
+ })
 
 -- Auto Gems Toggle
 local ToggleGems = MainTab:CreateToggle({
