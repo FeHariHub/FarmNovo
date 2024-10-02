@@ -1,9 +1,9 @@
 local Rayfield = loadstring(game:HttpGet('https://raw.githubusercontent.com/FeHariHub/FarmNovo/main/LibUI.lua'))()
 
 local Window = Rayfield:CreateWindow({
-    Name = "Legends Of Speed Gui",
-    LoadingTitle = "Exploiter Heaven",
-    LoadingSubtitle = "by badnanax",
+    Name = "FeHari Hub | Lendas Da Velocidade ⚡",
+    LoadingTitle = "Carregando Conteúdo..",
+    LoadingSubtitle = "Feito Por HA_FeHari",
     ConfigurationSaving = {
         Enabled = false,
         FolderName = nil,
@@ -30,13 +30,13 @@ local MainTab = Window:CreateTab("Auto Farm", nil)
 local MainSection = MainTab:CreateSection("Main")
 
 Rayfield:Notify({
-    Title = "Enjoy!",
-    Content = "Be the best in the game :)",
+    Title = "Aproveite!",
+    Content = "Torne-se melhor com FeHari Hub!",
     Duration = 5,
     Image = nil,
     Actions = {
         Ignore = {
-            Name = "Thanks!",
+            Name = "Obrigado!",
             Callback = function()
                 print("The user tapped Thanks!")
             end
@@ -46,26 +46,45 @@ Rayfield:Notify({
 
 -- Auto Steps Toggle
 local ToggleSteps = MainTab:CreateToggle({
-    Name = "Toggle AutoSpeed/XP",
+    Name = "Farmar Automático",
     CurrentValue = false,
-    Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+    Flag = "steps1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
     Callback = function(Value)
-        while wait() do
+        getgenv().AutoSteps = Value -- Set AutoSteps to the current toggle value
+        while getgenv().AutoSteps do
+            local args = {
+                [1] = "collectOrb",
+                [2] = "Orange Orb",
+                [3] = "City"
+            }
+            game:GetService("ReplicatedStorage").rEvents.orbEvent:FireServer(unpack(args))
+            wait() -- You might want to adjust the wait time to control the frequency
+        end
+    end
+})
+
+-- Auto Steps Toggle
+local ToggleSteps = MainTab:CreateToggle({
+    Name = "Farmar Automático 2",
+    CurrentValue = false,
+    Flag = "steps1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+    Callback = function(Value)
+        getgenv().AutoSteps = Value -- Set AutoSteps to the current toggle value
+        while getgenv().AutoSteps do
             local args = {
                 [1] = "collectOrb",
                 [2] = "Red Orb",
                 [3] = "Magma City"
             }
-            
             game:GetService("ReplicatedStorage").rEvents.orbEvent:FireServer(unpack(args))
-            
-            
-    end,
- })
+            wait() -- You might want to adjust the wait time to control the frequency
+        end
+    end
+})
 
 -- Auto Gems Toggle
 local ToggleGems = MainTab:CreateToggle({
-    Name = "Auto Gems",
+    Name = "Gemas Automáticas",
     CurrentValue = false,
     Flag = "gems1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
     Callback = function(Value)
@@ -84,7 +103,7 @@ local ToggleGems = MainTab:CreateToggle({
 
 -- Auto Rebirth Toggle
 local ToggleRebirth = MainTab:CreateToggle({
-    Name = "Auto Rebirth",
+    Name = "Renascimentos Automáticos",
     CurrentValue = false,
     Flag = "rebirths1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
     Callback = function(Value)
