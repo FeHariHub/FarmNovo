@@ -7,7 +7,7 @@ local Window = Rayfield:CreateWindow({
     ConfigurationSaving = {
         Enabled = false,
         FolderName = nil,
-        FileName = "legendsofspeedexploiter"
+        FileName = "FeHari V7"
     },
     Discord = {
         Enabled = true,
@@ -188,11 +188,11 @@ local ToggleRebirth = MainTab:CreateToggle({
 })
 
 local ToggleRebirth = MainTab:CreateToggle({
-    Name = "Corridas Automáticass",
+    Name = "Corridas Automáticas",
     CurrentValue = false,
     Flag = "races1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
     Callback = function(Value)
-        ToggleAutoRaces(Value)
+        local part = Players.LocalPlayer.Character.HumanoidRootPart
     end  
 })
 
