@@ -26,6 +26,30 @@ local Window = Rayfield:CreateWindow({
     }
 })
 
+local function ToggleAutoRaces(Value)
+    AutoRaces = Value
+    if AutoRaces then
+        spawn(function()
+            while AutoRaces do
+                pcall(function()
+                    ReplicatedStorage.rEvents.raceEvent:FireServer("joinRace")
+                    task.wait()
+                    local part = Players.LocalPlayer.Character.HumanoidRootPart
+                    for _, v in pairs(Workspace.raceMaps:GetDescendants()) do 
+                        if v.Name == "Decal" and v.Parent then
+                            firetouchinterest(part, v.Parent, 0)
+                            wait()
+                            firetouchinterest(part, v.Parent, 1)
+                        end
+                    end
+                end)
+                task.wait()
+            end
+        end)
+    end
+end 
+
+
 local MainTab = Window:CreateTab("Auto Farm", nil)
 local MainSection = MainTab:CreateSection("Main")
 
