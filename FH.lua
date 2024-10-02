@@ -26,6 +26,31 @@ local Window = Rayfield:CreateWindow({
     }
 })
 
+--// Variables \\--
+getgenv().Autofarm = false
+getgenv().OpenEgg = false
+getgenv().AutoRebirth = false
+getgenv().HoopFarm = false
+
+getgenv().MainCity = false
+getgenv().Snow = false
+getgenv().Magma = false
+getgenv().LegendsHighway = false
+
+local RunService = game:GetService("RunService")
+local Players = game:GetService("Players")
+local Player = Players.LocalPlayer
+local Chr = Player.Character
+
+Player.CharacterAdded:Connect(function()
+    Chr = Player.Character
+end)
+
+local ChrHead = Chr.Head
+local Humanoid = Chr.Humanoid
+local Root = Chr.HumanoidRootPart
+
+
 local function ToggleAutoRaces(Value)
     AutoRaces = Value
     if AutoRaces then
@@ -49,6 +74,7 @@ local function ToggleAutoRaces(Value)
     end
 end 
 
+local AutoRaces = false
 
 local MainTab = Window:CreateTab("Auto Farm", nil)
 local MainSection = MainTab:CreateSection("Main")
@@ -162,7 +188,7 @@ local ToggleRebirth = MainTab:CreateToggle({
 })
 
 local ToggleRebirth = MainTab:CreateToggle({
-    Name = "Corridas Automáticas",
+    Name = "Corridas Automáticass",
     CurrentValue = false,
     Flag = "races1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
     Callback = function(Value)
