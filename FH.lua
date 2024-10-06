@@ -1,221 +1,49 @@
-local Rayfield = loadstring(game:HttpGet('https://raw.githubusercontent.com/FeHariHub/FarmNovo/main/LibUI.lua'))()
-
-local Window = Rayfield:CreateWindow({
-    Name = "FeHari Hub | Lendas Da Velocidade ⚡",
-    LoadingTitle = "Carregando Conteúdo..",
-    LoadingSubtitle = "Feito Por HA_FeHari",
-    ConfigurationSaving = {
-        Enabled = false,
-        FolderName = nil,
-        FileName = "FeHari V7"
-    },
-    Discord = {
-        Enabled = true,
-        Invite = "NbjDSTyCvj",
-        RememberJoins = false
-    },
-    KeySystem = false,
-    KeySettings = {
-        Title = "Check the Discord server",
-        Subtitle = "Key System",
-        Note = "Join the Discord server for more information",
-        FileName = "fun_keysystem",
-        SaveKey = false,
-        GrabKeyFromSite = true,
-        Key = {"https://pastebin.com/raw/ULATYMKJ"}
-    }
-})
-
---// Variables \\--
-getgenv().Autofarm = false
-getgenv().OpenEgg = false
-getgenv().AutoRebirth = false
-getgenv().HoopFarm = false
-
-getgenv().MainCity = false
-getgenv().Snow = false
-getgenv().Magma = false
-getgenv().LegendsHighway = false
-
-local RunService = game:GetService("RunService")
-local Players = game:GetService("Players")
-local Player = Players.LocalPlayer
-local Chr = Player.Character
-
-Player.CharacterAdded:Connect(function()
-    Chr = Player.Character
+local UILib = loadstring(game:HttpGet('https://raw.githubusercontent.com/StepBroFurious/Script/main/HydraHubUi.lua'))()
+local Window = UILib.new("Grand Piece Online", game.Players.LocalPlayer.UserId, "Buyer")
+local Category1 = Window:Category("Main", "http://www.roblox.com/asset/?id=8395621517")
+local SubButton1 = Category1:Button("Combat", "http://www.roblox.com/asset/?id=8395747586")
+local Section1 = SubButton1:Section("Section", "Left")
+Section1:Button({
+    Title = "Kill All",
+    ButtonName = "KILL!!",
+    Description = "kills everyone",
+    }, function(value)
+    print(value)
 end)
-
-local ChrHead = Chr.Head
-local Humanoid = Chr.Humanoid
-local Root = Chr.HumanoidRootPart
-
-
-local function ToggleAutoRaces(Value)
-    AutoRaces = Value
-    if AutoRaces then
-        spawn(function()
-            while AutoRaces do
-                pcall(function()
-                    ReplicatedStorage.rEvents.raceEvent:FireServer("joinRace")
-                    task.wait()
-                    local part = Players.LocalPlayer.Character.HumanoidRootPart
-                    for _, v in pairs(Workspace.raceMaps:GetDescendants()) do 
-                        if v.Name == "Decal" and v.Parent then
-                            firetouchinterest(part, v.Parent, 0)
-                            wait()
-                            firetouchinterest(part, v.Parent, 1)
-                        end
-                    end
-                end)
-                task.wait()
-            end
-        end)
-    end
-end 
-
-local AutoRaces = false
-
-local MainTab = Window:CreateTab("Auto Farm", nil)
-local MainSection = MainTab:CreateSection("Main")
-
-Rayfield:Notify({
-    Title = "Aproveite!",
-    Content = "Torne-se melhor com FeHari Hub!",
-    Duration = 5,
-    Image = nil,
-    Actions = {
-        Ignore = {
-            Name = "Obrigado!",
-            Callback = function()
-                print("The user tapped Thanks!")
-            end
-        }
-    },
-})
-
--- Auto Steps Toggle
-local ToggleSteps = MainTab:CreateToggle({
-    Name = "Farmar Automático Orange City",
-    CurrentValue = false,
-    Flag = "steps1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
-    Callback = function(Value)
-        getgenv().AutoSteps = Value -- Set AutoSteps to the current toggle value
-        while getgenv().AutoSteps do
-            local args = {
-                [1] = "collectOrb",
-                [2] = "Orange Orb",
-                [3] = "City"
-            }
-            game:GetService("ReplicatedStorage").rEvents.orbEvent:FireServer(unpack(args))
-            wait() -- You might want to adjust the wait time to control the frequency
-        end
-    end
-})
-
--- Auto Steps Toggle
-local ToggleSteps = MainTab:CreateToggle({
-    Name = "Farmar Automático Red Magma",
-    CurrentValue = false,
-    Flag = "steps1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
-    Callback = function(Value)
-        getgenv().AutoSteps = Value -- Set AutoSteps to the current toggle value
-        while getgenv().AutoSteps do
-            local args = {
-                [1] = "collectOrb",
-                [2] = "Red Orb",
-                [3] = "Magma City"
-            }
-            game:GetService("ReplicatedStorage").rEvents.orbEvent:FireServer(unpack(args))
-            wait() -- You might want to adjust the wait time to control the frequency
-        end
-    end
-})
-
--- Auto Steps Toggle
-local ToggleSteps = MainTab:CreateToggle({
-    Name = "Farmar Automático Yellow Magma",
-    CurrentValue = false,
-    Flag = "steps1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
-    Callback = function(Value)
-        getgenv().AutoSteps = Value -- Set AutoSteps to the current toggle value
-        while getgenv().AutoSteps do
-            local args = {
-                [1] = "collectOrb",
-                [2] = "Yellow Orb",
-                [3] = "Magma City"
-            }
-            game:GetService("ReplicatedStorage").rEvents.orbEvent:FireServer(unpack(args))
-            wait() -- You might want to adjust the wait time to control the frequency
-        end
-    end
-})
-
--- Auto Gems Toggle
-local ToggleGems = MainTab:CreateToggle({
-    Name = "Gemas Automáticas",
-    CurrentValue = false,
-    Flag = "gems1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
-    Callback = function(Value)
-        getgenv().AutoGems = Value -- Set AutoGems to the current toggle value
-        while getgenv().AutoGems do
-            local args = {
-                [1] = "collectOrb",
-                [2] = "Gem",
-                [3] = "City"
-            }
-            game:GetService("ReplicatedStorage").rEvents.orbEvent:FireServer(unpack(args))
-            wait() -- You might want to adjust the wait time to control the frequency
-        end
-    end
-})
-
--- Auto Rebirth Toggle
-local ToggleRebirth = MainTab:CreateToggle({
-    Name = "Renascimentos Automáticos",
-    CurrentValue = false,
-    Flag = "rebirths1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
-    Callback = function(Value)
-        getgenv().AutoRebirth = Value -- Set AutoRebirth to the current toggle value
-        while getgenv().AutoRebirth do
-            local args = {
-                [1] = "rebirthRequest"
-            }
-            game:GetService("ReplicatedStorage").rEvents.rebirthEvent:FireServer(unpack(args))
-            wait() -- You might want to adjust the wait time to control the frequency
-        end
-    end
-})
-
-local ToggleRebirth = MainTab:CreateToggle({
-    Name = "Corridas Automáticas",
-    CurrentValue = false,
-    Flag = "races1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
-    Callback = function(Value)
-        local part = Players.LocalPlayer.Character.HumanoidRootPart
-    end  
-})
-
- local Slider = MainTab:CreateSlider({
-	Name = "WalkSpeed",
-	Range = {16, 10000},
-	Increment = 10,
-	Suffix = "WalkSpeed",
-	CurrentValue = 16,
-	Flag = "Slider1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
-	Callback = function(s)
-		game.Players.LocalPlayer.character.Humanoid.WalkSpeed = s
-	end,
-})
-
-local Slider = MainTab:CreateSlider({
-    Name = "JumpPower",
-    Range = {0, 5000},
-    Increment = 10,
-    Suffix = "JumpPower",
-    CurrentValue = 10,
-    Flag = "Slider2", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
-    Callback = function(a)
-        game.Players.LocalPlayer.Character.Humanoid.JumpPower = Value
-    end,
- })
+Section1:Toggle({
+    Title = "Auto Farm Coins",
+    Description = "Optional Description here",
+    Default = false
+    }, function(value)
+    print(value)
+end)
+Section1:Slider({
+    Title = "Walkspeed",
+    Description = "",
+    Default = 16,
+    Min = 0,
+    Max = 120
+    }, function(value)
+    print(value)
+end)
+Section1:ColorPicker({
+    Title = "Colorpicker",
+    Description = "",
+    Default = Color3.new(255,0,0),
+    }, function(value)
+    print(value)
+end)
+Section1:Textbox({
+    Title = "Damage Multiplier",
+    Description = "",
+    Default = "",
+    }, function(value)
+    print(value)
+end)
+Section1:Keybind({
+    Title = "Kill All",
+    Description = "",
+    Default = Enum.KeyCode.Q,
+    }, function(value)
+    print(value)
+end)
