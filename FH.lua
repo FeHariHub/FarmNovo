@@ -2,19 +2,48 @@ local library = loadstring(game:HttpGet('https://raw.githubusercontent.com/FeHar
 
 local Window = library:CreateWindow("FeHari Hub", "Lendas Da Velocidade ⚡", 111462827396918)
 
+local AutoRaces = false -- Variável para controlar o estado das corridas
+
+local function ToggleAutoRaces(Value)
+    AutoRaces = Value
+    if AutoRaces then
+        spawn(function()
+            while AutoRaces do
+                pcall(function()
+                    ReplicatedStorage.rEvents.raceEvent:FireServer("joinRace")
+                    task.wait()
+                    local part = Players.LocalPlayer.Character.HumanoidRootPart
+                    for _, v in pairs(Workspace.raceMaps:GetDescendants()) do 
+                        if v.Name == "Decal" and v.Parent then
+                            firetouchinterest(part, v.Parent, 0)
+                            wait()
+                            firetouchinterest(part, v.Parent, 1)
+                        end
+                    end
+                end)
+                task.wait()
+            end
+        end)
+    end
+end
 local Tab = Window:CreateTab("Início")
 
 local Page = Tab:CreateFrame("Farmar")
 
-Button = Page:CreateButton("Button", "Description", function()
-CreateNotification("Title", "Description", function(value)
-if value == true then
-print(true)
-else
-print(false)
-end
+Button = Page:CreateButton("Ativar Corridas", "Clique para ativar/desativar as corridas automáticas", function()
+    AutoRaces = not AutoRaces -- Alterna o estado
+    ToggleAutoRaces(AutoRaces) -- Chama a função com o novo estado
+
+    -- Cria uma notificação para o usuário
+    CreateNotification("Status de Corridas", AutoRaces and "Corridas ativadas" or "Corridas desativadas", function(value)
+        if value == true then
+            print("Notificação fechada")
+        else
+            print("Notificação não fechada")
+        end
+    end)
 end)
-end)
+
 
 Toggle = Page:CreateToggle("Toggle", "Description", function(arg)
 Toggle:UpdateToggle("New Title", "New Description")
