@@ -1,10 +1,10 @@
 local library = loadstring(game:HttpGet('https://raw.githubusercontent.com/FeHariHub/FarmNovo/main/LibUI.lua'))()
 
-local Window = library:CreateWindow("FeHari Hub", "Lendas Da Velocidade", 10044538000)
+local Window = library:CreateWindow("FeHari Hub", "Lendas Da Velocidade ⚡", 111462827396918)
 
-local Tab = Window:CreateTab("Scripts")
+local Tab = Window:CreateTab("Início")
 
-local Page = Tab:CreateFrame("Page 1")
+local Page = Tab:CreateFrame("Farmar")
 
 Button = Page:CreateButton("Button", "Description", function()
 CreateNotification("Title", "Description", function(value)
