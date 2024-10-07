@@ -1,72 +1,103 @@
-local library = loadstring(game:HttpGet('https://raw.githubusercontent.com/FeHariHub/FarmNovo/main/LibUI.lua'))()
+--Credit to xz#1111 for source
+local Ui = loadstring(game:HttpGet("https://raw.githubusercontent.com/FeHariHub/FarmNovo/main/LibUI.lua"))()
+local Ui = Library
 
-local Window = library:CreateWindow("FeHari Hub", "Lendas Da Velocidade ⚡", 111462827396918)
+local LoadTime = tick()
 
-local AutoRaces = false -- Variável para controlar o estado das corridas
+local Loader = Library.CreateLoader(
+    "FeHari Hub", 
+    Vector2.new(300, 300)
+)
 
-local function ToggleAutoRaces(Value)
-    AutoRaces = Value
-    if AutoRaces then
-        spawn(function()
-            while AutoRaces do
-                pcall(function()
-                    ReplicatedStorage.rEvents.raceEvent:FireServer("joinRace")
-                    task.wait()
-                    local part = Players.LocalPlayer.Character.HumanoidRootPart
-                    for _, v in pairs(Workspace.raceMaps:GetDescendants()) do 
-                        if v.Name == "Decal" and v.Parent then
-                            firetouchinterest(part, v.Parent, 0)
-                            wait()
-                            firetouchinterest(part, v.Parent, 1)
-                        end
-                    end
-                end)
-                task.wait()
-            end
-        end)
+local Window = Library.Window(
+    "FeHari Hub | Lendas Da Velocidade ⚡", 
+    Vector2.new(500, 620)
+)
+
+Window.SendNotification(
+    "Normal", -- Normal, Warning, Error 
+    "Press RightShift to open menu and close menu!", 
+    10
+)
+
+Window.Watermark(
+    "Text Here"
+)
+-- Window:Visible = true
+
+-- // UI Main \\ --
+local Tab1 = Window:Tab("Tab1")
+local Section1 = Tab1:Section(
+    "Section1", 
+    "Left"
+)
+
+
+Section1:Toggle({
+    Title = "Toggle1", 
+    Flag = "Toggle_1",
+    Type = "Dangerous",
+    Callback = function(v)
+        print("Value = "..v)
     end
-end
+}): -- Toggle Keybind Below
+    Keybind({
+    Title = "KeybindToggle1",
+    Flag = "Keybind_Toggle_1", 
+    Key = Enum.UserInputType.MouseButton2, 
+    StateType = "Toggle"
+})
 
-local Tab = Window:CreateTab("Início")
-
-local Page = Tab:CreateFrame("Farmar")
-
-Button = Page:CreateButton("Ativar Corridas", "Clique para ativar/desativar as corridas automáticas", function()
-    AutoRaces = not AutoRaces -- Alterna o estado
-    ToggleAutoRaces(AutoRaces) -- Chama a função com o novo estado
-
-    -- Cria uma notificação para o usuário
-    CreateNotification("Status de Corridas", AutoRaces and "Corridas ativadas" or "Corridas desativadas", function(value)
-        if value == true then
-            print("Notificação fechada")
-        else
-            print("Notificação não fechada")
-        end
-    end)
-end)
+Section1:Toggle({
+    Title = "Toggle2", 
+    Flag = "Toggle_2"
+    
+}):
+Colorpicker({
+    Color = Library.Theme.Accent[2], 
+    Flag = "Toggle2Color"
+})
 
 
-local toggle = Page:CreateToggle("Ativar Corridas Automáticas", "Clique para ativar/desativar as corridas automáticas", function(arg)
-    ToggleAutoRaces(arg) -- Chama a função com o novo estado
+Section1:Slider({
+    Title = "Slider1", 
+    Flag = "Slider_1", 
+    Symbol = "", 
+    Default = 0, 
+    Min = 0, 
+    Max = 20, 
+    Decimals = 1,
+    Callback = function(v)
+        print("Value = "..v)
+    end
+})
+Section1:Dropdown({
+    Title = "Dropdown1", 
+    List = {"1", "2" ,"3"}, 
+    Default = "1", 
+    Flag = "DropDown_1",
+    Callback = function(v)
+        print("Value = "..v)
+    end
+})
 
-    -- Atualiza o título e a descrição do toggle
-    toggle:UpdateToggle(arg and "Corridas Ativadas" or "Corridas Desativadas", "Clique para alternar novamente")
-    print("Status do Toggle:", arg)
-end)
+Section1:Button({
+    Title = "Button1",
+    Callback = function()
+        print("Pressed!")
+    end
+})
 
-Bind = Page:CreateBind("KeyBind", "F", function(arg)
-Bind:UpdateBind("New Title")
-print(arg)
-end)
+--Section1:Colorpicker({
+    --Title = "ColorPicker1"
+--})
 
-TextBox = Page:CreateBox("TextBox", 10044538000, function(arg)
-TextBox:UpdateBox("New Title")
-print(arg)
-end)
+--Section1:Label({
+    --Title = "Label1"
+--})
 
-Page:CreateSlider("Slider", 16, 500,function(arg)
-   print(arg)
-end)
-
-Label = Page:CreateLabel("Label")
-Label:UpdateLabel("New Title")
+--Tab1:AddPlayerlist()
+Window:AddSettingsTab()
+Window:SwitchTab(Tab1)
+Window.ToggleAnime(false)
+LoadTime = math.floor((tick() - LoadTime) * 1000)
