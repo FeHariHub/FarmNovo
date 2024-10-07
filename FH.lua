@@ -1,75 +1,28 @@
-local DiscordLib = loadstring(game:HttpGet"https://raw.githubusercontent.com/FeHariHub/FarmNovo/main/LibUI.lua")()
+local Flux = loadstring(game:HttpGet"https://raw.githubusercontent.com/FeHariHub/FarmNovo/main/LibUI.lua")()
 
-local win = DiscordLib:Window("FeHari Hub | Lendas Da Velocidade ⚡")
-
-local serv = win:Server("Preview", "")
-
-local btns = serv:Channel("Buttons")
-
-btns:Button("Kill all", function()
-DiscordLib:Notification("Notification", "Killed everyone!", "Okay!")
+local win = Flux:Window("FeHari Hub", "Lendas Da Velocidade ⚡", Color3.fromRGB(255, 110, 48), Enum.KeyCode.LeftControl)
+local tab = win:Tab("Tab 1", "http://www.roblox.com/asset/?id=6023426915")
+tab:Button("Kill all", "This function may not work sometimes and you can get banned.", function()
+Flux:Notification("Killed all players successfully!", "Alright")
 end)
-
-btns:Seperator()
-
-btns:Button("Get max level", function()
-DiscordLib:Notification("Notification", "Max level!", "Okay!")
-end)
-
-local tgls = serv:Channel("Toggles")
-
-tgls:Toggle("Auto-Farm",false, function(bool)
-print(bool)
-end)
-
-local sldrs = serv:Channel("Sliders")
-
-local sldr = sldrs:Slider("Slide me!", 0, 1000, 400, function(t)
+tab:Label("This is just a label.")
+tab:Line()
+tab:Toggle("Auto-Farm Coins", "Automatically collects coins for you!", function(t)
 print(t)
 end)
-
-sldrs:Button("Change to 50", function()
-sldr:Change(50)
-end)
-
-local drops = serv:Channel("Dropdowns")
-
-
-local drop = drops:Dropdown("Pick me!",{"Option 1","Option 2","Option 3","Option 4","Option 5"}, function(bool)
-print(bool)
-end)
-
-drops:Button("Clear", function()
-drop:Clear()
-end)
-
-drops:Button("Add option", function()
-drop:Add("Option")
-end)
-
-local clrs = serv:Channel("Colorpickers")
-
-clrs:Colorpicker("ESP Color", Color3.fromRGB(255,1,1), function(t)
+tab:Slider("Walkspeed", "Makes your faster.", 0, 100,16,function(t)
 print(t)
 end)
-
-local textbs = serv:Channel("Textboxes")
-
-textbs:Textbox("Gun power", "Type here!", true, function(t)
+tab:Dropdown("Part to aim at", {"Torso","Head","Penis"}, function(t)
 print(t)
 end)
-
-local lbls = serv:Channel("Labels")
-
-lbls:Label("This is just a label.")
-
-local bnds = serv:Channel("Binds")
-
-bnds:Bind("Kill bind", Enum.KeyCode.RightShift, function()
-print("Killed everyone!")
+tab:Colorpicker("ESP Color", Color3.fromRGB(255,1,1), function(t)
+print(t)
 end)
-
-serv:Channel("by dawid#7205")
-
-
-win:Server("Main", "http://www.roblox.com/asset/?id=6031075938")
+tab:Textbox("Gun Power", "This textbox changes your gun power, so you can kill everyone faster and easier.", true, function(t)
+print(t)
+end)
+tab:Bind("Kill Bind", Enum.KeyCode.Q, function()
+print("Killed a random person!")
+end)
+win:Tab("Tab 2", "http://www.roblox.com/asset/?id=6022668888")
