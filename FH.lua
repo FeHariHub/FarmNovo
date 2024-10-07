@@ -26,6 +26,7 @@ local function ToggleAutoRaces(Value)
         end)
     end
 end
+
 local Tab = Window:CreateTab("Início")
 
 local Page = Tab:CreateFrame("Farmar")
@@ -45,9 +46,12 @@ Button = Page:CreateButton("Ativar Corridas", "Clique para ativar/desativar as c
 end)
 
 
-Toggle = Page:CreateToggle("Toggle", "Description", function(arg)
-Toggle:UpdateToggle("New Title", "New Description")
-print(arg)
+local toggle = Page:CreateToggle("Ativar Corridas Automáticas", "Clique para ativar/desativar as corridas automáticas", function(arg)
+    ToggleAutoRaces(arg) -- Chama a função com o novo estado
+
+    -- Atualiza o título e a descrição do toggle
+    toggle:UpdateToggle(arg and "Corridas Ativadas" or "Corridas Desativadas", "Clique para alternar novamente")
+    print("Status do Toggle:", arg)
 end)
 
 Bind = Page:CreateBind("KeyBind", "F", function(arg)
