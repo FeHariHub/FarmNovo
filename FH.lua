@@ -1,32 +1,75 @@
-local library = loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/FeHariHub/FarmNovo/main/LibUI.lua"))()
+local DiscordLib = loadstring(game:HttpGet"https://raw.githubusercontent.com/FeHariHub/FarmNovo/main/LibUI.lua")()
 
-local Main = library:CreateWindow("FeHari Hub","Lendas Da Velocidade ⚡")
+local win = DiscordLib:Window("FeHari Hub | Lendas Da Velocidade ⚡")
 
-local tab = Main:CreateTab("Cheats")
-local tab2 = Main:CreateTab("Misc")
+local serv = win:Server("Preview", "")
 
-tab:CreateButton("Hi",function()
-print("clicked")
+local btns = serv:Channel("Buttons")
+
+btns:Button("Kill all", function()
+DiscordLib:Notification("Notification", "Killed everyone!", "Okay!")
 end)
 
-tab:CreateToggle("Farm",function(a)
-print(a)
+btns:Seperator()
+
+btns:Button("Get max level", function()
+DiscordLib:Notification("Notification", "Max level!", "Okay!")
 end)
 
-tab:CreateSlider("Wow",1,16,function(a)
-print(a)
+local tgls = serv:Channel("Toggles")
+
+tgls:Toggle("Auto-Farm",false, function(bool)
+print(bool)
 end)
 
-tab:CreateCheckbox("Aimbot",function(a)
-print(a)
+local sldrs = serv:Channel("Sliders")
+
+local sldr = sldrs:Slider("Slide me!", 0, 1000, 400, function(t)
+print(t)
 end)
 
-tab:CreateDropdown("Word",{"Sung","Jin","Woo"},function(a)
-print(a)
+sldrs:Button("Change to 50", function()
+sldr:Change(50)
 end)
 
-tab2:CreateButton("Hello",function()
-print("clicked")
+local drops = serv:Channel("Dropdowns")
+
+
+local drop = drops:Dropdown("Pick me!",{"Option 1","Option 2","Option 3","Option 4","Option 5"}, function(bool)
+print(bool)
 end)
 
-tab:Show()
+drops:Button("Clear", function()
+drop:Clear()
+end)
+
+drops:Button("Add option", function()
+drop:Add("Option")
+end)
+
+local clrs = serv:Channel("Colorpickers")
+
+clrs:Colorpicker("ESP Color", Color3.fromRGB(255,1,1), function(t)
+print(t)
+end)
+
+local textbs = serv:Channel("Textboxes")
+
+textbs:Textbox("Gun power", "Type here!", true, function(t)
+print(t)
+end)
+
+local lbls = serv:Channel("Labels")
+
+lbls:Label("This is just a label.")
+
+local bnds = serv:Channel("Binds")
+
+bnds:Bind("Kill bind", Enum.KeyCode.RightShift, function()
+print("Killed everyone!")
+end)
+
+serv:Channel("by dawid#7205")
+
+
+win:Server("Main", "http://www.roblox.com/asset/?id=6031075938")
