@@ -1,125 +1,84 @@
-local FeHari = loadstring(game:HttpGet("https://raw.githubusercontent.com/FeHariHub/FarmNovo/main/LibUI.lua", true))()
+-- Documentação da UI
 
-Hello, and welcome to this documentation document! This will briefly cover all the necessary steps, you need to create a nice UI. :)
-The main variable you will be using is called ("library").
+-- Olá, e bem-vindo à documentação! Este documento cobrirá brevemente todos os passos necessários para criar uma interface de usuário (UI). :)
 
-Function Map:
-library: { 
-	AddWindow(<string> title, <table> options [optional])
-	-> {
-		AddTab(<string> title)
-		-> {
-			AddLabel(<string> text)
-			AddButton(<string> title, <function> callback)
-			AddTextBox(<string> title, <function> callback, <table> options [clear = true]) -- callback args: <string> text
-			AddSwitch(<string> title, <function> callback) -- callback args: <boolean> statement
-			-> {
-				Set(<boolean> statement)
-			}
-			AddSlider(<string> title, <function> callback, <table> options [min = 0, max = 100, readonly = false]) -- callback args: <number> number selected
-			-> {
-				Set(<number> number)
-			}
-			AddKeybind(<string> title, <function> callback, <table> options [standard = Enum.KeyCode.RightShift])
-			-> {
-				SetKeybind(<Enum> keycode object)
-			}
-			AddDropdown(<string> title, <function> callback) -- callback args: <string> selected object name
-			-> {
-				Add(<string> title) -- adds object with ("title") to the dropdown list
-				-> {
-					Remove() -- removes the object from the dropdown list
+-- Variável Principal
+local library = {} -- Defina a variável library aqui
+
+-- Mapa de Funções
+library = {
+	AddWindow = function(title, options)
+		-- Função para adicionar uma nova janela
+		-- Implementação aqui...
+		return {
+			AddTab = function(tabTitle)
+				-- Função para adicionar uma nova aba
+				-- Implementação aqui...
+				return {
+					AddLabel = function(text) end,
+					AddButton = function(title, callback) end,
+					AddTextBox = function(title, callback, options) end,
+					AddSwitch = function(title, callback) end,
+					AddSlider = function(title, callback, options) end,
+					AddKeybind = function(title, callback, options) end,
+					AddDropdown = function(title, callback) end,
+					AddColorPicker = function(callback) end,
+					AddConsole = function(options) end,
+					AddHorizontalAlignment = function() end,
+					AddFolder = function(folderTitle) end,
+					Show = function() end,
 				}
-			}
-			AddColorPicker(<function> callback) -- callback args: <Color3> color selected
-			-> {
-				Set(<Color3> color)
-			}
-			AddConsole(<table> options [y = 200 (height of the console), full = false (fills out entire tab), source = "Lua" (or "Logs"), readonly = true])
-			-> {
-				Get() -- returns input
-				Set(<string> input) -- sets input
-				Log(<string> message) -- adds a message to the console
-			}
-			AddHorizontalAlignment() -- creates empty ui-element, will align elements horizontally (buttons only)
-			-> {
-				AddButton(...) -- same as other AddButton, except it will be placed horizontally
-			}
-			AddFolder(<string> title)
-			-> {
-				-- returns the same as AddTab, except functions used from this return will be added into the folder.
-			}
-
-			Show() -- function to open tab
+			end
 		}
-	}
-
-	FormatWindows() -- will place the current windows nicely. this function is recommended to use after UI setup.
+	end,
+	FormatWindows = function() end,
 }
 
-To create a new window, simply use the following function:
-local window = library:AddWindow(<string> title, <table> options) -- Keep in mind that the options argument is not necessary, if you just leave it nil, it will use the default ui_options table, which is located at the top.
+-- Para criar uma nova janela:
+local window = library:AddWindow("FeHari Hub", nil)
 
-Notice how I assign the window to a variable ("window"). This is because the function returns a table consisting of more functions, which you can use on this window.
+-- Para adicionar uma aba:
+local tab = window:AddTab("Título da Aba")
+tab:Show() -- Para mostrar a aba primeiro
 
-To add a tab to our window, we can use the following function:
-local tab = window:AddTab()
-This function will also return a table with functions.
-To make this tab *show* as first thing, we will add this:
-tab:Show()
+-- Exemplos de Uso
 
-Now we can begin adding stuff to this tab!
-
-[Examples]:
-AddLabel:
-```
+-- Adicionar Label
 tab:AddLabel("Hello World!")
-```
 
-AddButton:
-```
+-- Adicionar Botão
 tab:AddButton("Give ...", function()
-	print("Gave ... !")
+	print("Gave ...!")
 end)
-```
 
-AddTextBox:
-```
+-- Adicionar Caixa de Texto
 tab:AddTextBox("Teleport to Player", function(text)
-	teleport_to(game:GetService("Players"):FindFirstChild("text") or game:GetService("Players").LocalPlayer)
+	teleport_to(game:GetService("Players"):FindFirstChild(text) or game:GetService("Players").LocalPlayer)
 end)
-```
 
-AddSwitch:
-```
+-- Adicionar Switch
 local switch = tab:AddSwitch("God Mode", function(bool)
 	toggle_god_mode(bool)
 end)
-switch:Set(true)
-```
+switch:Set(true) -- Ativa o switch
 
-AddSlider:
-```
+-- Adicionar Slider
 local slider = tab:AddSlider("WalkSpeed", function(p)
 	setwalkspeed(p)
 end, {
 	["min"] = 16,
 	["max"] = 100,
 })
-slider:Set(16)
-```
+slider:Set(16) -- Valor inicial
 
-AddKeybind:
-```
+-- Adicionar Keybind
 local keybind = tab:AddKeybind("Toggle", function(obj)
 	ui_options.toggle_key = obj
 end, {
 	["standard"] = Enum.KeyCode.RightShift,
 })
-```
 
-AddDropdown:
-```
+-- Adicionar Dropdown
 local dropdown = tab:AddDropdown("Teleport to Location", function(text)
 	if text == "Mars" then
 		teleport(CFrame.new(...))
@@ -129,53 +88,44 @@ end)
 local mars = dropdown:Add("Mars")
 local earth = dropdown:Add("Earth")
 local not_a_planet = dropdown:Add("Iridocyclitis")
-not_a_planet:Remove()
-```
+not_a_planet:Remove() -- Remove um item
 
-AddColorPicker:
-```
+-- Adicionar Seletor de Cores
 tab:AddLabel("Theme color")
 local cp = tab:AddColorPicker(function(color)
 	ui_options.main_color = color
 end)
-```
 
-AddFolder:
-```
-local folder = tab:AddFolder()
-folder:AddSwitch()
+-- Adicionar Pasta
+local folder = tab:AddFolder("My Folder")
+folder:AddSwitch("Switch Inside Folder", function(bool)
+	print("Switch inside folder:", bool)
+end)
 folder:AddLabel("Woo! I'm inside a folder!")
 
-local folder2 = folder:AddFolder()
+local folder2 = folder:AddFolder("Nested Folder")
 folder2:AddLabel("I'm inside *two* folders :smirk:")
-```
 
-[Adding Options]:
-The only two element-functions taking options right now is "AddSlider" and "AddTextBox".
-To set options, simply add a table as the last argument, like this:
-```
+-- Adicionando Opções
 tab:AddSlider("WalkSpeed", function(x)
 	setwalkspeed(x)
 end, {
-	["min"] = 16, -- default : 0
-	["max"] = 100, -- default : 100
+	["min"] = 16,
+	["max"] = 100,
 })
-```
 
-Now for AddTextBox example:
-```
 tab:AddTextBox("Epic", function(text)
-	print("TextBox : " .. text)
+	print("TextBox: " .. text)
 end, {
-	["clear"] = false, -- default : true
+	["clear"] = false,
 })
-```
 
-AddConsole example:
-```
+-- Exemplo de Console
 tab:AddConsole({
 	["y"] = 210,
 	["readonly"] = false,
 	["source"] = "Lua",
 })
-```
+
+-- Carregar a UI
+loadstring(game:HttpGet("https://raw.githubusercontent.com/FeHariHub/FarmNovo/main/LibUI.lua", true))()
