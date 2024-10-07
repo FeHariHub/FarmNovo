@@ -1,8 +1,8 @@
-local Luminosity = loadstring(game:HttpGet("https://raw.githubusercontent.com/FeHariHub/FarmNovo/main/UserInterface/Luminosity.lua", true))()
+local Luminosity = loadstring(game:HttpGet("https://raw.githubusercontent.com/FeHariHub/FarmNovo/main/LibUI.lua", true))()
 
-local Window = Luminosity.new("Luminosity UI", "v1.0.0", 4370345701)
+local Window = Luminosity.new("FeHari Hub", "v1.0.0", 4370345701)
 
-local Tab1 = Window.Tab("Tab 1", 6026568198)
+local Tab1 = Window.Tab("Início", 100789040568622)
 local Folder = Tab1.Folder("Options", "A bunch of options you can use")
 Folder.Button("Button", function()
 print("Button Clicked")
