@@ -6,39 +6,13 @@
 local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/FeHariHub/FarmNovo/main/LibUI.lua", true))() -- Defina a variável library aqui
 
 -- Mapa de Funções
-library = {
-	AddWindow = function(title, options)
-		-- Função para adicionar uma nova janela
-		-- Implementação aqui...
-		return {
-			AddTab = function(tabTitle)
-				-- Função para adicionar uma nova aba
-				-- Implementação aqui...
-				return {
-					AddLabel = function(text) end,
-					AddButton = function(title, callback) end,
-					AddTextBox = function(title, callback, options) end,
-					AddSwitch = function(title, callback) end,
-					AddSlider = function(title, callback, options) end,
-					AddKeybind = function(title, callback, options) end,
-					AddDropdown = function(title, callback) end,
-					AddColorPicker = function(callback) end,
-					AddConsole = function(options) end,
-					AddHorizontalAlignment = function() end,
-					AddFolder = function(folderTitle) end,
-					Show = function() end,
-				}
-			end
-		}
-	end,
-	FormatWindows = function() end,
-}
+library = { loadstring(game:HttpGet("https://raw.githubusercontent.com/FeHariHub/FarmNovo/main/LibUI.lua", true))()
 
 -- Para criar uma nova janela:
-local window = library:AddWindow("FeHari Hub", nil)
+local window = library:AddWindow("FeHari Hub | Lendas Da Velocidade", nil)
 
 -- Para adicionar uma aba:
-local tab = window:AddTab("Título da Aba")
+local tab = window:AddTab("Início")
 tab:Show() -- Para mostrar a aba primeiro
 
 -- Exemplos de Uso
