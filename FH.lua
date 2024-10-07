@@ -1,12 +1,4 @@
--- Documentação da UI
-
--- Olá, e bem-vindo à documentação! Este documento cobrirá brevemente todos os passos necessários para criar uma interface de usuário (UI). :)
-
--- Variável Principal
 local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/FeHariHub/FarmNovo/main/LibUI.lua", true))() -- Defina a variável library aqui
-
--- Mapa de Funções
-library = { loadstring(game:HttpGet("https://raw.githubusercontent.com/FeHariHub/FarmNovo/main/LibUI.lua", true))()
 
 -- Para criar uma nova janela:
 local window = library:AddWindow("FeHari Hub | Lendas Da Velocidade", nil)
