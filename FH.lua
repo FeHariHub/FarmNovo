@@ -3,8 +3,8 @@ local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/F
 local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/FeHariHub/FarmNovo/main/InterfaceGerenciamento.lua"))()
 
 local Window = Fluent:CreateWindow({
-    Title = "FeHari Hub " .. Fluent.Version,
-    SubTitle = "Feito Por FeHariV7",
+    Title = "FeHari Hub | Lendas Da Velocidade ⚡" .. Fluent.Version,
+    SubTitle = "V-BETA!",
     TabWidth = 160,
     Size = UDim2.fromOffset(580, 460),
     Acrylic = true, -- The blur may be detectable, setting this to false disables blur entirely
@@ -14,7 +14,8 @@ local Window = Fluent:CreateWindow({
 
 --Fluent provides Lucide Icons https://lucide.dev/icons/ for the tabs, icons are optional
 local Tabs = {
-    Main = Window:AddTab({ Title = "Início", Icon = "" }),
+    Main = Window:AddTab({ Title = "Início", Icon = "house" }),
+    Farm = Window:AddTab({ Title = "Farmar", Icon = "skull" }),
     Settings = Window:AddTab({ Title = "Settings", Icon = "settings" })
 }
 
@@ -31,15 +32,15 @@ do
 
 
     Tabs.Main:AddParagraph({
-        Title = "Paragraph",
-        Content = "This is a paragraph.\nSecond line!"
+        Title = "Atenção!",
+        Content = "Esta é Uma V-BETA Do FeHari Hub.\nEm Breve Lançaremos A V-OFC!"
     })
 
 
 
-    Tabs.Main:AddButton({
-        Title = "Button",
-        Description = "Very important button",
+    Tabs.Farm:AddButton({
+        Title = "Em Breve..",
+        Description = "Logo Logo!",
         Callback = function()
             Window:Dialog({
                 Title = "Title",
@@ -64,7 +65,7 @@ do
 
 
 
-    local Toggle = Tabs.Main:AddToggle("MyToggle", {Title = "Toggle", Default = false })
+    local Toggle = Tabs.Farm:AddToggle("MyToggle", {Title = "Corridas Automáticas", Default = false })
 
     Toggle:OnChanged(function()
         print("Toggle changed:", Options.MyToggle.Value)
@@ -75,11 +76,11 @@ do
 
     
     local Slider = Tabs.Main:AddSlider("Slider", {
-        Title = "Slider",
-        Description = "This is a slider",
-        Default = 2,
+        Title = "Velocidade",
+        Description = "Velocidade Do Personagem",
+        Default = 1000,
         Min = 0,
-        Max = 5,
+        Max = 999999,
         Rounding = 1,
         Callback = function(Value)
             print("Slider was changed:", Value)
