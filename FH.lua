@@ -16,7 +16,7 @@ local Window = Fluent:CreateWindow({
 local Tabs = {
     Main = Window:AddTab({ Title = "Início", Icon = "warehouse" }),
     Farm = Window:AddTab({ Title = "Farmar", Icon = "skull" }),
-    Teleport = Window:AddTab({ Title = "Teleportar", Icon = "flag" })
+    Teleport = Window:AddTab({ Title = "Teleportar", Icon = "arrow-right-left" })
     Races = Window:AddTab({ Title = "Corridas", Icon = "flag" })
 }
 
@@ -33,15 +33,15 @@ do
 
 
     Tabs.Main:AddParagraph({
-        Title = "Atenção!",
-        Content = "Esta é Uma V-BETA Do FeHari Hub.\nEm Breve Lançaremos A V-OFC!"
+        Title = "Paragraph",
+        Content = "This is a paragraph.\nSecond line!"
     })
 
-    
 
-    Tabs.Farm:AddButton({
-        Title = "Em Breve..",
-        Description = "Logo Logo!",
+
+    Tabs.Main:AddButton({
+        Title = "Button",
+        Description = "Very important button",
         Callback = function()
             Window:Dialog({
                 Title = "Title",
@@ -64,14 +64,24 @@ do
         end
     })
 
-    
+
+
+    local Toggle = Tabs.Main:AddToggle("MyToggle", {Title = "Toggle", Default = false })
+
+    Toggle:OnChanged(function()
+        print("Toggle changed:", Options.MyToggle.Value)
+    end)
+
+    Options.MyToggle:SetValue(false)
+
+
     
     local Slider = Tabs.Main:AddSlider("Slider", {
-        Title = "Velocidade",
-        Description = "Velocidade Do Personagem",
-        Default = 1000,
+        Title = "Slider",
+        Description = "This is a slider",
+        Default = 2,
         Min = 0,
-        Max = 999999,
+        Max = 5,
         Rounding = 1,
         Callback = function(Value)
             print("Slider was changed:", Value)
@@ -125,9 +135,81 @@ do
 
 
 
+    local Colorpicker = Tabs.Main:AddColorpicker("Colorpicker", {
+        Title = "Colorpicker",
+        Default = Color3.fromRGB(96, 205, 255)
+    })
+
+    Colorpicker:OnChanged(function()
+        print("Colorpicker changed:", Colorpicker.Value)
+    end)
+    
+    Colorpicker:SetValueRGB(Color3.fromRGB(0, 255, 140))
+
+
+
+    local TColorpicker = Tabs.Main:AddColorpicker("TransparencyColorpicker", {
+        Title = "Colorpicker",
+        Description = "but you can change the transparency.",
+        Transparency = 0,
+        Default = Color3.fromRGB(96, 205, 255)
+    })
+
+    TColorpicker:OnChanged(function()
+        print(
+            "TColorpicker changed:", TColorpicker.Value,
+            "Transparency:", TColorpicker.Transparency
+        )
+    end)
+
+
+
+    local Keybind = Tabs.Main:AddKeybind("Keybind", {
+        Title = "KeyBind",
+        Mode = "Toggle", -- Always, Toggle, Hold
+        Default = "LeftControl", -- String as the name of the keybind (MB1, MB2 for mouse buttons)
+
+        -- Occurs when the keybind is clicked, Value is `true`/`false`
+        Callback = function(Value)
+            print("Keybind clicked!", Value)
+        end,
+
+        -- Occurs when the keybind itself is changed, `New` is a KeyCode Enum OR a UserInputType Enum
+        ChangedCallback = function(New)
+            print("Keybind changed!", New)
+        end
+    })
+
+    -- OnClick is only fired when you press the keybind and the mode is Toggle
+    -- Otherwise, you will have to use Keybind:GetState()
+    Keybind:OnClick(function()
+        print("Keybind clicked:", Keybind:GetState())
+    end)
+
+    Keybind:OnChanged(function()
+        print("Keybind changed:", Keybind.Value)
+    end)
+
+    task.spawn(function()
+        while true do
+            wait(1)
+
+            -- example for checking if a keybind is being pressed
+            local state = Keybind:GetState()
+            if state then
+                print("Keybind is being held down")
+            end
+
+            if Fluent.Unloaded then break end
+        end
+    end)
+
+    Keybind:SetValue("MB2", "Toggle") -- Sets keybind to MB2, mode to Hold
+
+
     local Input = Tabs.Main:AddInput("Input", {
-        Title = "Parar De Farmar Rebirths",
-        Default = "Valor",
+        Title = "Input",
+        Default = "Default",
         Placeholder = "Placeholder",
         Numeric = false, -- Only allows numbers
         Finished = false, -- Only calls callback when you press enter
@@ -140,39 +222,6 @@ do
         print("Input updated:", Input.Value)
     end)
 end
-
-
-
-local Dropdown = Tabs.Main:AddDropdown("Dropdown", {
-        Title = "Áreas Para Teleportar",
-        Values = {"Main City", "Snow City", "Magma City", "Legends Highway"},
-        Multi = false,
-        Default = nil,
-    })
-
-    Dropdown:SetValue("City")
-
-    Dropdown:OnChanged(function(Value)
-        print("Dropdown changed:", Value)
-    end)
-
-
-
-local Toggle = Tabs.Farm:AddToggle("MyToggle", {Title = "Corridas Automáticas", Default = false })
-
-    Toggle:OnChanged(function()
-        print("Toggle changed:", Options.MyToggle.Value)
-    end)
-
-    Options.MyToggle:SetValue(false)
-
-
-
-    Tabs.Races:AddParagraph({
-        Title = "Em Breve...",
-        Content = "Logo Logo Novas Funções Como:"
-    })
-
 
 
 -- Addons:
