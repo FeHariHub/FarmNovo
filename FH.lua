@@ -15,8 +15,10 @@ local Window = Fluent:CreateWindow({
 --Fluent provides Lucide Icons https://lucide.dev/icons/ for the tabs, icons are optional
 local Tabs = {
     Main = Window:AddTab({ Title = "Início", Icon = "" }),
-    Teleport = Window:AddTab({ Title = "Teleporta", Icon = "arrow-right-left" }),
+    Teleport = Window:AddTab({ Title = "Teleportar", Icon = "arrow-up-down" }),
     Farm = Window:AddTab({ Title = "Farmar", Icon = "skull" }),
+    Rebirth = Window:AddTab({ Title = "Renascimento", Icon = "refresh-ccw" }),
+    Races = Window:AddTab({ Title = "Corrida", Icon = "flag" }),
     Settings = Window:AddTab({ Title = "Settings", Icon = "settings" })
 }
 
