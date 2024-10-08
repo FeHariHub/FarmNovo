@@ -16,7 +16,7 @@ local Window = Fluent:CreateWindow({
 local Tabs = {
     Main = Window:AddTab({ Title = "Início", Icon = "warehouse" }),
     Farm = Window:AddTab({ Title = "Farmar", Icon = "skull" }),
-    Teleport = Window:AddTab({ Title = "Teleportar", Icon = "arrow-right-left" })
+    Teleport = Window:AddTab({ Title = "Teleportar", Icon = "flag" })
     Races = Window:AddTab({ Title = "Corridas", Icon = "flag" })
 }
 
@@ -150,7 +150,7 @@ local Dropdown = Tabs.Main:AddDropdown("Dropdown", {
         Default = nil,
     })
 
-    Dropdown:SetValue("four")
+    Dropdown:SetValue("City")
 
     Dropdown:OnChanged(function(Value)
         print("Dropdown changed:", Value)
