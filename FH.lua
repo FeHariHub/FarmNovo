@@ -3,8 +3,8 @@ local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/F
 local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/FeHariHub/FarmNovo/main/InterfaceGerenciamento.lua"))()
 
 local Window = Fluent:CreateWindow({
-    Title = "FeHari Hub | Lendas Da Velocidade ⚡" .. Fluent.Version,
-    SubTitle = "V-BETA!",
+    Title = "FeHari Hub | Lendas Da Velocidade⚡ " .. Fluent.Version,
+    SubTitle = "Feito Por FeHariV7",
     TabWidth = 160,
     Size = UDim2.fromOffset(580, 460),
     Acrylic = true, -- The blur may be detectable, setting this to false disables blur entirely
@@ -15,9 +15,9 @@ local Window = Fluent:CreateWindow({
 --Fluent provides Lucide Icons https://lucide.dev/icons/ for the tabs, icons are optional
 local Tabs = {
     Main = Window:AddTab({ Title = "Início", Icon = "" }),
+    Teleport = Window:AddTab({ Title = "Teleporta", Icon = "arrow-right-left" }),
     Farm = Window:AddTab({ Title = "Farmar", Icon = "skull" }),
-    Teleport = Window:AddTab({ Title = "Teleportar", Icon = "arrow-right-left" })
-    Races = Window:AddTab({ Title = "Corridas", Icon = "flag" })
+    Settings = Window:AddTab({ Title = "Settings", Icon = "settings" })
 }
 
 local Options = Fluent.Options
