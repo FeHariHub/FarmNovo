@@ -20,7 +20,7 @@ local Tabs = {
     Rebirth = Window:AddTab({ Title = "Renascimentos", Icon = "refresh-ccw" }),
     Races = Window:AddTab({ Title = "Corridas", Icon = "flag" }),
     Shop = Window:AddTab({ Title = "Loja", Icon = "shopping-cart" }),
-    Tutorial = Window:AddTab({ Title = "Bug-Tutorial", Icon = "youtube" }),
+    Tutorial = Window:AddTab({ Title = "Bug-Tutorial", Icon = "file-video" }),
     Extras = Window:AddTab({ Title = "Extras", Icon = "gem" }),
     Credits = Window:AddTab({ Title = "Créditos", Icon = "hammer" }),
     Settings = Window:AddTab({ Title = "Config", Icon = "settings" })
@@ -96,10 +96,17 @@ Tabs.Main:AddButton({
             })
         end
     })
-    
+
+
+
+    Tabs.Main:AddParagraph({
+        Title = "UTILITÁRIOS",
+        Content = "Utilitários para o seu personagem!"
+    })
     
 
-    local Toggle = Tabs.Main:AddToggle("MyToggle", {Title = "Toggle", Default = false })
+    
+    local Toggle = Tabs.Main:AddToggle("MyToggle", {Title = "Voar", Default = false })
 
     Toggle:OnChanged(function()
         print("Toggle changed:", Options.MyToggle.Value)
@@ -109,9 +116,36 @@ Tabs.Main:AddButton({
 
 
     
+Tabs.Main:AddButton({
+        Title = "Resetar Personagem",
+        Description = "Ative Para Remover BUGS!",
+        Callback = function()
+            Window:Dialog({
+                Title = "Resetar Personagem",
+                Content = "Deseja Ativar?",
+                Buttons = {
+                    {
+                        Title = "Sim",
+                        Callback = function()
+                            print("Confirmed the dialog.")
+                        end
+                    },
+                    {
+                        Title = "Não",
+                        Callback = function()
+                            print("Cancelled the dialog.")
+                        end
+                    }
+                }
+            })
+        end
+    })
+    
+
+    
     local Slider = Tabs.Main:AddSlider("Slider", {
-        Title = "Slider",
-        Description = "This is a slider",
+        Title = "Velocidade",
+        Description = "Altere A Velocidade De Seu Personagem!",
         Default = 2,
         Min = 0,
         Max = 5,
