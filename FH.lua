@@ -20,7 +20,7 @@ local Tabs = {
     Rebirth = Window:AddTab({ Title = "Renascimentos", Icon = "refresh-ccw" }),
     Races = Window:AddTab({ Title = "Corridas", Icon = "flag" }),
     Shop = Window:AddTab({ Title = "Loja", Icon = "shopping-cart" }),
-    Tutorial = Window:AddTab({ Title = "Bug-Tutorial", Icon = "notepad-text" }),
+    Tutorial = Window:AddTab({ Title = "Bug-Tutorial", Icon = "youtube" }),
     Extras = Window:AddTab({ Title = "Extras", Icon = "gem" }),
     Credits = Window:AddTab({ Title = "Créditos", Icon = "hammer" }),
     Settings = Window:AddTab({ Title = "Config", Icon = "settings" })
@@ -46,21 +46,21 @@ do
 
 
     Tabs.Main:AddButton({
-        Title = "Button",
-        Description = "Very important button",
+        Title = "Ativar Anti-Kick",
+        Description = "Ative Para Não Sair Por Inavitidade!",
         Callback = function()
             Window:Dialog({
-                Title = "Title",
-                Content = "This is a dialog",
+                Title = "Anti-Kick",
+                Content = "Deseja Ativar?",
                 Buttons = {
                     {
-                        Title = "Confirm",
+                        Title = "Sim",
                         Callback = function()
                             print("Confirmed the dialog.")
                         end
                     },
                     {
-                        Title = "Cancel",
+                        Title = "Não",
                         Callback = function()
                             print("Cancelled the dialog.")
                         end
@@ -71,6 +71,33 @@ do
     })
 
 
+
+Tabs.Main:AddButton({
+        Title = "Ativar Redução De Gráficos",
+        Description = "Ative Para Obter +FPS e +Desempenho!",
+        Callback = function()
+            Window:Dialog({
+                Title = "Reduzir Gráficos",
+                Content = "Deseja Ativar?",
+                Buttons = {
+                    {
+                        Title = "Sim",
+                        Callback = function()
+                            print("Confirmed the dialog.")
+                        end
+                    },
+                    {
+                        Title = "Não",
+                        Callback = function()
+                            print("Cancelled the dialog.")
+                        end
+                    }
+                }
+            })
+        end
+    })
+    
+    
 
     local Toggle = Tabs.Main:AddToggle("MyToggle", {Title = "Toggle", Default = false })
 
