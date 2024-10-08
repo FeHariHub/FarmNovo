@@ -17,9 +17,11 @@ local Tabs = {
     Main = Window:AddTab({ Title = "Início", Icon = "" }),
     Teleport = Window:AddTab({ Title = "Teleportar", Icon = "arrow-up-down" }),
     Farm = Window:AddTab({ Title = "Farmar", Icon = "skull" }),
-    Rebirth = Window:AddTab({ Title = "Renascimento", Icon = "refresh-ccw" }),
-    Races = Window:AddTab({ Title = "Corrida", Icon = "flag" }),
-    Settings = Window:AddTab({ Title = "Settings", Icon = "settings" })
+    Rebirth = Window:AddTab({ Title = "Renascimentos", Icon = "refresh-ccw" }),
+    Races = Window:AddTab({ Title = "Corridas", Icon = "flag" }),
+    Extras = Window:AddTab({ Title = "Extras", Icon = "gem" }),
+    Credits = Window:AddTab({ Title = "Créditos", Icon = "users-round" }),
+    Settings = Window:AddTab({ Title = "Config", Icon = "settings" })
 }
 
 local Options = Fluent.Options
@@ -35,8 +37,8 @@ do
 
 
     Tabs.Main:AddParagraph({
-        Title = "Paragraph",
-        Content = "This is a paragraph.\nSecond line!"
+        Title = "ATENÇÃO !",
+        Content = "Esta É Uma V-BETA Do FH.\nLogo Logo A V-OFC!"
     })
 
 
