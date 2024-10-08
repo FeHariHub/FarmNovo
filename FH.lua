@@ -19,8 +19,10 @@ local Tabs = {
     Farm = Window:AddTab({ Title = "Farmar", Icon = "skull" }),
     Rebirth = Window:AddTab({ Title = "Renascimentos", Icon = "refresh-ccw" }),
     Races = Window:AddTab({ Title = "Corridas", Icon = "flag" }),
+    Shop = Window:AddTab({ Title = "Loja", Icon = "shopping-cart" }),
+    Tutorial = Window:AddTab({ Title = "Bug-Tutorial", Icon = "notepad-text" }),
     Extras = Window:AddTab({ Title = "Extras", Icon = "gem" }),
-    Credits = Window:AddTab({ Title = "Créditos", Icon = "users-round" }),
+    Credits = Window:AddTab({ Title = "Créditos", Icon = "hammer" }),
     Settings = Window:AddTab({ Title = "Config", Icon = "settings" })
 }
 
@@ -38,7 +40,7 @@ do
 
     Tabs.Main:AddParagraph({
         Title = "ATENÇÃO !",
-        Content = "Esta É Uma V-BETA Do FH.\nLogo Logo A V-OFC!"
+        Content = "Esta é uma V-BETA do FH.\nLogo mais a V-OFC!"
     })
 
 
