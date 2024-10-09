@@ -66,7 +66,7 @@ local InterfaceManager = {} do
 
 		local InterfaceTheme = section:AddDropdown("InterfaceTheme", {
 			Title = "Tema",
-			Description = "Mude O Tema Do Seu Script !",
+			Description = "Mude O Tema De Seu Script !",
 			Values = Library.Themes,
 			Default = Settings.Theme,
 			Callback = function(Value)
@@ -81,7 +81,7 @@ local InterfaceManager = {} do
 		if Library.UseAcrylic then
 			section:AddToggle("AcrylicToggle", {
 				Title = "Acrílico",
-				Description = "Deixe A Transparência Bonita Em Até 8+",
+				Description = "Deixe O Fundo Desfocado Mais Bonito!",
 				Default = Settings.Acrylic,
 				Callback = function(Value)
 					Library:ToggleAcrylic(Value)
