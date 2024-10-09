@@ -65,8 +65,8 @@ local InterfaceManager = {} do
 		local section = tab:AddSection("Interface")
 
 		local InterfaceTheme = section:AddDropdown("InterfaceTheme", {
-			Title = "Theme",
-			Description = "Changes the interface theme.",
+			Title = "Tema",
+			Description = "Mude O Tema Do Seu Script !",
 			Values = Library.Themes,
 			Default = Settings.Theme,
 			Callback = function(Value)
@@ -80,8 +80,8 @@ local InterfaceManager = {} do
 	
 		if Library.UseAcrylic then
 			section:AddToggle("AcrylicToggle", {
-				Title = "Acrylic",
-				Description = "The blurred background requires graphic quality 8+",
+				Title = "Acrílico",
+				Description = "Deixe A Transparência Bonita Em Até 8+",
 				Default = Settings.Acrylic,
 				Callback = function(Value)
 					Library:ToggleAcrylic(Value)
@@ -92,8 +92,8 @@ local InterfaceManager = {} do
 		end
 	
 		section:AddToggle("TransparentToggle", {
-			Title = "Transparency",
-			Description = "Makes the interface transparent.",
+			Title = "Transparência",
+			Description = "Deixe O Seu Script Transparente!",
 			Default = Settings.Transparency,
 			Callback = function(Value)
 				Library:ToggleTransparency(Value)
@@ -102,12 +102,6 @@ local InterfaceManager = {} do
 			end
 		})
 	
-		local MenuKeybind = section:AddKeybind("MenuKeybind", { Title = "Minimize Bind", Default = Settings.MenuKeybind })
-		MenuKeybind:OnChanged(function()
-			Settings.MenuKeybind = MenuKeybind.Value
-            InterfaceManager:SaveSettings()
-		end)
-		Library.MinimizeKeybind = MenuKeybind
     end
 end
 
