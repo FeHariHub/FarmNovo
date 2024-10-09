@@ -12,6 +12,34 @@ local Window = Fluent:CreateWindow({
     MinimizeKey = Enum.KeyCode.LeftControl -- Used when theres no MinimizeKeybind
 })
 
+local AutoRaces = false
+
+local function ToggleAutoRaces(Value)
+    AutoRaces = Value
+    if AutoRaces then
+        spawn(function()
+            while AutoRaces do
+                pcall(function()
+                    if Players.LocalPlayer.Character and Players.LocalPlayer.Character:FindFirstChild("Humanoid") and Players.LocalPlayer.Character.Humanoid.Health > 0 then
+                        ReplicatedStorage.rEvents.raceEvent:FireServer("joinRace")
+                        task.wait(2)  -- Aguarda 2 segundos antes de tentar novamente
+                        local part = Players.LocalPlayer.Character.HumanoidRootPart
+                        for _, v in pairs(Workspace.raceMaps:GetDescendants()) do 
+                            if v.Name == "Decal" and v.Parent then
+                                firetouchinterest(part, v.Parent, 0)
+                                wait(0.1)  -- Espera um pouco entre os toques
+                                firetouchinterest(part, v.Parent, 1)
+                            end
+                        end
+                    end
+                end)
+                task.wait(1)  -- Intervalo entre as tentativas de entrada
+            end
+        end)
+    end
+end
+
+
 --Fluent provides Lucide Icons https://lucide.dev/icons/ for the tabs, icons are optional
 local Tabs = {
     Main = Window:AddTab({ Title = "Início", Icon = "" }),
@@ -106,13 +134,14 @@ Tabs.Main:AddButton({
     
 
     
-    local Toggle = Tabs.Main:AddToggle("MyToggle", {Title = "Voar", Default = false })
+    local Toggle = Tabs.Main:AddToggle("MyToggle", {Title = "Corridas Automáticas", Default = false })
 
-    Toggle:OnChanged(function()
-        print("Toggle changed:", Options.MyToggle.Value)
-    end)
+Toggle:OnChanged(function()
+    ToggleAutoRaces(Toggle.Value)  -- Passa o valor do toggle para a função
+    print("Toggle changed:", Toggle.Value)  -- Corrigido para usar Toggle
+end)
 
-    Options.MyToggle:SetValue(false)
+Options.MyToggle:SetValue(false)
 
 
     
